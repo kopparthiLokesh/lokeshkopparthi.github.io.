@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopparthi Lokesh | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 100px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        #hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--light);
+        }
+
+        #hero .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        #hero .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        #hero .contact-info a:hover {
+            color: var(--secondary);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .education-item {
+            margin-bottom: 2rem;
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+            background: rgba(52, 152, 219, 0.05);
+        }
+
+        /* Skills Section */
+        #skills {
+            background: linear-gradient(135deg, var(--secondary) 0%, #2980b9 100%);
+            color: white;
+        }
+
+        #skills h2 {
+            color: white;
+        }
+
+        #skills h2:after {
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-category h3 {
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-list li:before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--light);
+        }
+
+        /* Timeline Section */
+        #timeline {
+            background-color: white;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--secondary);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: rotate(45deg);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:after {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 4px solid white;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -10px;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+        }
+
+        #projects h2 {
+            color: white;
+        }
+
+        #projects h2:after {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: white;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(52, 152, 219, 0.05);
+            width: 150px;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 20px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-marker {
+                left: 20px !important;
+            }
+            
+            .timeline-content:after {
+                left: -10px !important;
+                right: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1>KOPPARTHI LOKESH</h1>
+            <p class="subtitle">AI & ML Engineer | Data Analyst | Blockchain Developer</p>
+            <div class="contact-info">
+                <a href="tel:+918179869287"><i class="fas fa-phone"></i> +91 8179869287</a>
+                <a href="mailto:kopparthilokesh@gmail.com"><i class="fas fa-envelope"></i> kopparthilokesh@gmail.com</a>
+                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+            <a href="#about" class="btn">Explore My Journey</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div>
+                    <p>I'm a passionate Computer Science Engineering student specializing in AI & ML, with hands-on experience in data analytics, machine learning, and blockchain development. I thrive on solving complex problems and creating innovative solutions that make a real impact.</p>
+                    <p>My journey in technology began with a curiosity about how things work, which has evolved into a passion for building systems that can learn, adapt, and improve over time.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+                <div>
+                    <h3>Education</h3>
+                    <div class="education-item">
+                        <h4>Bachelor of Technology - Computer Science Engineering (AI&ML)</h4>
+                        <p>Kalasalingam University, Tamil Nadu | 2021-2025</p>
+                        <p><strong>CGPA: 6.40</strong></p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Intermediate (Maths, Physics, Chemistry)</h4>
+                        <p>Narayana Junior College, Andhra Pradesh | 2019-2021</p>
+                        <p><strong>Percentage: 77%</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming & Scripting</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>React JS</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li>Machine Learning Algorithms</li>
+                        <li>Scikit-learn</li>
+                        <li>Pandas & NumPy</li>
+                        <li>Data Processing</li>
+                        <li>Model Deployment</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>Git & GitHub</li>
+                        <li>SQL</li>
+                        <li>Excel</li>
+                        <li>Operating Systems</li>
+                        <li>Computer Networks</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                    <ul class="skill-list">
+                        <li>Data Analytics - Deloitte</li>
+                        <li>SQL Concepts & Commands</li>
+                        <li>Oracle Cloud Foundations</li>
+                        <li>Smart Contracts - Coursera</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline">
+        <div class="container">
+            <h2>Experience & Achievements</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">AUG 2025</div>
+                        <h3>Data Analytics Intern</h3>
+                        <h4>Deloitte, Bangalore</h4>
+                        <ul>
+                            <li>Analyzed large datasets to generate actionable business insights</li>
+                            <li>Built interactive dashboards and reports using Excel, SQL, and visualization tools</li>
+                            <li>Automated data cleaning and preprocessing to improve workflow efficiency</li>
+                            <li>Collaborated with teams to provide data-driven recommendations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>IIT Madras Hackathon</h3>
+                        <h4>10th Place among 400+ teams</h4>
+                        <p>Secured 10th place using practical AI solutions to solve complex challenges.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>IBM Hackathon</h3>
+                        <h4>2nd Runner-up among 150+ teams</h4>
+                        <p>Achieved 2nd runner-up with an efficient software system design.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>Research Publications</h3>
+                        <h4>IEEE and Scopus</h4>
+                        <p>Published 2+ research papers on applied AI and ML methods.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Decentralized Voting System using Blockchain</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Ethereum</span>
+                            <span class="tech-tag">Hyperledger</span>
+                            <span class="tech-tag">Polygon</span>
+                            <span class="tech-tag">React.js</span>
+                        </div>
+                        <ul>
+                            <li>Built a decentralized voting system with Ethereum smart contracts for secure elections</li>
+                            <li>Integrated React.js frontend with Metamask for user authentication and transaction handling</li>
+                            <li>Utilized Truffle & Ganache for testing and deployment, ensuring transparent and reliable results</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Electricity Demand Prediction using Machine Learning</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                        </div>
+                        <ul>
+                            <li>Built a ML model to predict electricity demand and improve forecasting accuracy</li>
+                            <li>Processed large datasets with Pandas & NumPy for training and evaluation</li>
+                            <li>Fine-tuned Scikit-learn algorithms for high prediction accuracy and insights</li>
+                            <li>Deployed the model for real-time electricity demand forecasting and energy optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and innovation.</p>
+            <div class="contact-links">
+                <a href="mailto:kopparthilokesh@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <span>Email</span>
+                </a>
+                <a href="tel:+918179869287" class="contact-link">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <span>Phone</span>
+                </a>
+                <a href="#" class="contact-link">
+                    <i class="fab fa-linkedin contact-icon"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="contact-link">
+                    <i class="fab fa-github contact-icon"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize GSAP and ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero section animation
+        gsap.from("#hero h1", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out"
+        });
+
+        gsap.from("#hero .subtitle", {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            delay: 0.3,
+            ease: "power3.out"
+        });
+
+        gsap.from("#hero .contact-info a", {
+            duration: 0.8,
+            y: 20,
+            opacity: 0,
+            stagger: 0.1,
+            delay: 0.6,
+            ease: "power3.out"
+        });
+
+        gsap.from("#hero .btn", {
+            duration: 0.8,
+            y: 20,
+            opacity: 0,
+            delay: 0.9,
+            ease: "power3.out"
+        });
+
+        // About section animation
+        gsap.from("#about .about-content > div", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            stagger: 0.3,
+            ease: "power3.out"
+        });
+
+        // Skills section animation
+        gsap.from(".skill-category", {
+            scrollTrigger: {
+                trigger: "#skills",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Timeline animation
+        gsap.from(".timeline-item", {
+            scrollTrigger: {
+                trigger: "#timeline",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            duration: 1,
+            x: -50,
+            opacity: 0,
+            stagger: 0.3,
+            ease: "power3.out"
+        });
+
+        // Projects animation
+        gsap.from(".project-card", {
+            scrollTrigger: {
+                trigger: "#projects",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            stagger: 0.3,
+            ease: "power3.out"
+        });
+
+        // Contact animation
+        gsap.from(".contact-link", {
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+</html>
